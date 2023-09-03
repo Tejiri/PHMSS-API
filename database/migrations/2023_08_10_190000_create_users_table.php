@@ -14,15 +14,15 @@ return new class extends Migration
         // Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username',255);
+            $table->string('username');
             $table->string('firstName',255);
             $table->string('lastName',255);
             $table->string('middleName',255)->nullable();
-            $table->date('dateOfBirth',255);
+            $table->date('dateOfBirth');
             $table->string('address',255);
             $table->string('postCode',255);
             $table->string('phoneNumber',255);
-            $table->string('role',255);
+            $table->string('role');
             $table->string('gender',255);
             $table->string('emergencyName',255)->nullable();
             $table->string('emergencyPhoneNumber',255)->nullable();
