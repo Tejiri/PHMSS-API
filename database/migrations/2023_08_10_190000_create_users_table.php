@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('emergencyPhoneNumber',255)->nullable();
             $table->string('emergencyEmail',255)->nullable();
             $table->string('emergencyRelationship',255)->nullable();
-            $table->string('email',255)->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',255);
             $table->unsignedBigInteger('doctorId',255)->nullable();

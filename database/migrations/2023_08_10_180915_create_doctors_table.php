@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('phoneNumber',255);
             $table->string('role',255);
             $table->string('gender',255);
-            $table->string('email',255)->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',255);
             $table->rememberToken();
