@@ -11,25 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('middleName')->nullable();
+            $table->string('firstName', 255);
+            $table->string('lastName', 255);
+            $table->string('middleName', 255)->nullable();
             $table->date('dateOfBirth');
-            $table->string('address');
-            $table->string('postCode');
-            $table->string('phoneNumber');
+            $table->string('address', 255);
+            $table->string('postCode', 255);
+            $table->string('phoneNumber', 255);
             $table->string('role');
-            $table->string('gender');
-            $table->string('emergencyName')->nullable();
-            $table->string('emergencyPhoneNumber')->nullable();
-            $table->string('emergencyEmail')->nullable();
-            $table->string('emergencyRelationship')->nullable();
+            $table->string('gender', 255);
+            $table->string('emergencyName', 255)->nullable();
+            $table->string('emergencyPhoneNumber', 255)->nullable();
+            $table->string('emergencyEmail', 255)->nullable();
+            $table->string('emergencyRelationship', 255)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password', 255);
             $table->unsignedBigInteger('doctorId')->nullable();
             $table->foreign('doctorId')->references("id")->on("doctors")->onDelete('cascade');
             $table->rememberToken();
