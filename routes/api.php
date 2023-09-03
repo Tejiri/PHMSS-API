@@ -48,9 +48,6 @@ use Illuminate\Support\Facades\Hash;
 $appVersion = "v1";
 Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
 
-
-
-
   Route::middleware(['checkIfAdmin'])->group(function () use ($appVersion) {
     Route::post("v1" . '/admins/register-patient', [UserManagementController::class, 'registerPatient']);
     Route::post("v1" . '/admins/register-doctor', [UserManagementController::class, 'registerDoctor']);
