@@ -34,7 +34,7 @@ class ServiceRatingController extends Controller
             [
                 "rating" => $request->rating,
                 "description" => $request->description,
-                "patientId" => $request->patientId,
+                "patientId" => $patient->id,
                 "doctorId" => $request->doctorId
             ]
         );
