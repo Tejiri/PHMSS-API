@@ -98,6 +98,15 @@ class AuthController extends Controller
             $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
             $user->gender = Crypt::decrypt( $user->gender);
 
+
+            $user->doctor->firstName = Crypt::decrypt($user->doctor->firstName);
+            $user->doctor->lastName = Crypt::decrypt($user->doctor->lastName);
+            $user->doctor->middleName = Crypt::decrypt($user->doctor->middleName);
+            $user->doctor->address = Crypt::decrypt($user->doctor->address);
+            $user->doctor->postCode = Crypt::decrypt($user->doctor->postCode);
+            $user->doctor->phoneNumber = Crypt::decrypt($user->doctor->phoneNumber);
+            $user->doctor->gender = Crypt::decrypt( $user->doctor->gender);
+
             $token = $user->createToken('phmss-Token')->plainTextToken;
             return response()->json([
                 "user" => $user,
