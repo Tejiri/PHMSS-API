@@ -47,6 +47,14 @@ class UserManagementController extends Controller
             "emergencyRelationship" => $request->emergencyRelationship != null ? $request->emergencyRelationship : $user->emergency
         ]);
 
+        $user->firstName = Crypt::decrypt($user->firstName);
+        $user->lastName = Crypt::decrypt($user->lastName);
+        $user->middleName = Crypt::decrypt($user->middleName);
+        $user->address = Crypt::decrypt($user->address);
+        $user->postCode = Crypt::decrypt($user->postCode);
+        $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+        $user->gender = Crypt::decrypt( $user->gender);
+
         return response()->json([
             "status" => 200,
             "message" => "Biodata information has been updated successfully",
@@ -64,6 +72,14 @@ class UserManagementController extends Controller
         $user->update([
             "password" => $request->password != null ?  Hash::make($request->password) : $user->password,
              ]);
+
+             $user->firstName = Crypt::decrypt($user->firstName);
+             $user->lastName = Crypt::decrypt($user->lastName);
+             $user->middleName = Crypt::decrypt($user->middleName);
+             $user->address = Crypt::decrypt($user->address);
+             $user->postCode = Crypt::decrypt($user->postCode);
+             $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+             $user->gender = Crypt::decrypt( $user->gender);
 
         return response()->json([
             "status" => 200,
