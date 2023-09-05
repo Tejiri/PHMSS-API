@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
 {
@@ -61,7 +62,7 @@ class UserManagementController extends Controller
 
 
         $user->update([
-            "password" => $request->password != null ?  $request->password : $user->password,
+            "password" => $request->password != null ?  Hash::make($request->password) : $user->password,
              ]);
 
         return response()->json([
