@@ -67,6 +67,8 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
   });
 
   Route::middleware(['checkIfPatient'])->group(function () use ($appVersion) {
+    
+    Route::put($appVersion . '/patients/update-password', [UserManagementController::class, 'updatePassword']);
     Route::get($appVersion . '/patients/biodata', [UserManagementController::class, 'getBiodata']);
     Route::get($appVersion . '/patients/illnesses', [IllnessSymptomController::class, 'getPatientIllnesses']);
     Route::get($appVersion . '/patients/medications', [MedicationController::class, 'getMedicationForIllness']);
