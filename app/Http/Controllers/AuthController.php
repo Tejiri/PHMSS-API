@@ -91,12 +91,12 @@ class AuthController extends Controller
             $user = User::with('doctor')->where('email', $request->email)->first();
 
             $user->firstName = Crypt::decrypt($user->firstName);
-            // $user->lastName = Crypt::decrypt($user->lastName);
-            // $user->middleName = Crypt::decrypt($user->middleName);
-            // $user->address = Crypt::decrypt($user->address);
-            // $user->postCode = Crypt::decrypt($user->postCode);
-            // $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
-            // $user->gender = Crypt::decrypt( $user->gender);
+            $user->lastName = Crypt::decrypt($user->lastName);
+            $user->middleName = Crypt::decrypt($user->middleName);
+            $user->address = Crypt::decrypt($user->address);
+            $user->postCode = Crypt::decrypt($user->postCode);
+            $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+            $user->gender = Crypt::decrypt( $user->gender);
 
             $token = $user->createToken('phmss-Token')->plainTextToken;
             return response()->json([
