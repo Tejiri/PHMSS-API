@@ -44,7 +44,7 @@ class ServiceRatingController extends Controller
         ], 200);
     }
 
-    function findDoctorRatings(Request $request, $doctorId)
+    function findDoctorRatings($doctorId)
     {
 
         $serviceRating = ServiceRating::with('doctor')->with('user')->where('doctorId', $doctorId)->get();

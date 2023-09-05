@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -88,6 +89,15 @@ class AuthController extends Controller
 
         if (Auth::guard('web')->attempt($credentials)) {
             $user = User::with('doctor')->where('email', $request->email)->first();
+
+            $user->firstName = Crypt::decrypt($user->firstName);
+            $user->lastName = Crypt::decrypt($user->lastName);
+            $user->middleName = Crypt::decrypt($user->middleName);
+            $user->address = Crypt::decrypt($user->address);
+            $user->postCode = Crypt::decrypt($user->postCode);
+            $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+            $user->gender = Crypt::decrypt( $user->gender);
+
             $token = $user->createToken('phmss-Token')->plainTextToken;
             return response()->json([
                 "user" => $user,
@@ -99,6 +109,14 @@ class AuthController extends Controller
         if (Auth::guard('doctor')->attempt($credentials)) {
             $doctor = Doctor::with('patients')->where('email', $request->email)->first();
             $token = $doctor->createToken('phmss-Token')->plainTextToken;
+
+            $doctor->firstName = Crypt::decrypt($doctor->firstName);
+            $doctor->lastName = Crypt::decrypt($doctor->lastName);
+            $doctor->middleName = Crypt::decrypt($doctor->middleName);
+            $doctor->address = Crypt::decrypt($doctor->address);
+            $doctor->postCode = Crypt::decrypt($doctor->postCode);
+            $doctor->phoneNumber = Crypt::decrypt($doctor->phoneNumber);
+            $doctor->gender = Crypt::decrypt( $doctor->gender);
             return response()->json([
                 "user" => $doctor,
                 'token' => $token,
