@@ -6,6 +6,7 @@ use App\Models\Illness;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class UserManagementController extends Controller
 {
@@ -43,6 +44,14 @@ class UserManagementController extends Controller
             "emergencyEmail" => $request->emergencyEmail != null ? $request->emergencyEmail : $user->emergency,
             "emergencyRelationship" => $request->emergencyRelationship != null ? $request->emergencyRelationship : $user->emergency
         ]);
+
+        $user->firstName = Crypt::decrypt($user->firstName);
+        $user->lastName = Crypt::decrypt($user->lastName);
+        $user->middleName = Crypt::decrypt($user->middleName);
+        $user->address = Crypt::decrypt($user->address);
+        $user->postCode = Crypt::decrypt($user->postCode);
+        $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+        $user->gender = Crypt::decrypt( $user->gender);
 
         return response()->json([
             "status" => 200,
