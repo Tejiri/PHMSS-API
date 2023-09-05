@@ -45,7 +45,7 @@ class UserManagementController extends Controller
             "emergencyRelationship" => $request->emergencyRelationship != null ? $request->emergencyRelationship : $user->emergency
         ]);
 
-        $user->firstName = Crypt::decrypt($user->firstName);
+        // $user->firstName = Crypt::decrypt($user->firstName);
         // $user->lastName = Crypt::decrypt($user->lastName);
         // $user->middleName = Crypt::decrypt($user->middleName);
         // $user->address = Crypt::decrypt($user->address);
