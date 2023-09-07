@@ -72,7 +72,7 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
     Route::get($appVersion . '/patients/biodata', [UserManagementController::class, 'getBiodata']);
     Route::get($appVersion . '/patients/illnesses', [IllnessSymptomController::class, 'getPatientIllnesses']);
     Route::get($appVersion . '/patients/medications', [MedicationController::class, 'getMedicationForIllness']);
-    Route::get($appVersion . '/patients/check-symptoms', [IllnessSymptomController::class, 'findIllnessWithSymptoms']);
+    Route::post($appVersion . '/patients/check-symptoms', [IllnessSymptomController::class, 'findIllnessWithSymptoms']);
     Route::get($appVersion . '/patients/symptoms', [IllnessSymptomController::class, 'getSymptoms']);
     Route::post($appVersion . '/patients/rate-doctor', [ServiceRatingController::class, 'rateDoctor']);
     Route::get($appVersion . '/patients/doctor-ratings/{doctorId}', [ServiceRatingController::class, 'findDoctorRatings']);
