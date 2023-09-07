@@ -14,8 +14,11 @@ class IllnessSymptomController extends Controller
     {
         try {
 
-            $possibleIllnesses = Illness::with('symptoms')->whereHas('symptoms', function ($query) use ($request) {
-                $query->whereIn('name', $request->symptoms);
+            $jsonString = $request->getContent(); // Gets the raw content of the request
+    $decodedData = json_decode($jsonString, true);
+
+            $possibleIllnesses = Illness::with('symptoms')->whereHas('symptoms', function ($query) use ($request,$decodedData) {
+                $query->whereIn('name', $decodedData['symptoms']);
             })->get();
 
             return response()->json([
