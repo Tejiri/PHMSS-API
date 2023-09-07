@@ -13,6 +13,7 @@ class IllnessSymptomController extends Controller
     function findIllnessWithSymptoms(Request $request)
     {
         try {
+            return $request->symptoms;
             return response()->json([
                 "symptoms" => $request->symptoms,
             ], 200);
