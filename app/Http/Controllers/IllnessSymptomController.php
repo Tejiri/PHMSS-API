@@ -13,9 +13,8 @@ class IllnessSymptomController extends Controller
     function findIllnessWithSymptoms(Request $request)
     {
         try {
-            return $request->symptoms;
             return response()->json([
-                "symptoms" => $request->symptoms,
+                "aaaaa" => $request->symptoms,
             ], 200);
             $possibleIllnesses = Illness::with('symptoms')->whereHas('symptoms', function ($query) use ($request) {
                 $query->whereIn('name', $request->symptoms);
