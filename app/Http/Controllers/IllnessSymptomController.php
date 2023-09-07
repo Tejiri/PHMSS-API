@@ -18,7 +18,7 @@ class IllnessSymptomController extends Controller
             $symptoms = $request->input('symptoms'); // Use input() method to get the symptoms
     
             // Log symptoms for debugging
-            Log::info('Symptoms: ' . json_encode($symptoms));
+            Log::info('Symptoms: dsdds' . json_encode($symptoms));
     
             // Return symptoms in response for debugging
             return response()->json([
