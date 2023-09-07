@@ -22,7 +22,7 @@ class Illness extends Model
 
     public function medications()
     {
-        return $this->belongsToMany(Medication::class, 'illness_medication','illnessId','medicationId')->withTimestamps();
+        return $this->belongsToMany(Medication::class, 'illness_medication','illnessId','medicationId')->withoutPivot()->withTimestamps();
     }
 
     public function symptoms()
