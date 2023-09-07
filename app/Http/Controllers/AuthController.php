@@ -90,14 +90,15 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt($credentials)) {
             $user = User::with('doctor')->where('email', $request->email)->first();
 
+            $token = $user->createToken('phmss-Token')->plainTextToken;
             $user->firstName = Crypt::decrypt($user->firstName);
             $user->lastName = Crypt::decrypt($user->lastName);
             $user->middleName = Crypt::decrypt($user->middleName);
             $user->address = Crypt::decrypt($user->address);
             $user->postCode = Crypt::decrypt($user->postCode);
             $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
-            $user->gender = Crypt::decrypt( $user->gender);
-
+            $user->gender = Crypt::decrypt($user->gender);
+            $user->token = $token;
 
             $user->doctor->firstName = Crypt::decrypt($user->doctor->firstName);
             $user->doctor->lastName = Crypt::decrypt($user->doctor->lastName);
@@ -105,9 +106,9 @@ class AuthController extends Controller
             $user->doctor->address = Crypt::decrypt($user->doctor->address);
             $user->doctor->postCode = Crypt::decrypt($user->doctor->postCode);
             $user->doctor->phoneNumber = Crypt::decrypt($user->doctor->phoneNumber);
-            $user->doctor->gender = Crypt::decrypt( $user->doctor->gender);
+            $user->doctor->gender = Crypt::decrypt($user->doctor->gender);
 
-            $token = $user->createToken('phmss-Token')->plainTextToken;
+
             return response()->json([
                 "user" => $user,
                 'token' => $token,
@@ -125,7 +126,8 @@ class AuthController extends Controller
             $doctor->address = Crypt::decrypt($doctor->address);
             $doctor->postCode = Crypt::decrypt($doctor->postCode);
             $doctor->phoneNumber = Crypt::decrypt($doctor->phoneNumber);
-            $doctor->gender = Crypt::decrypt( $doctor->gender);
+            $doctor->gender = Crypt::decrypt($doctor->gender);
+            $doctor->token = $token;
             return response()->json([
                 "user" => $doctor,
                 'token' => $token,
