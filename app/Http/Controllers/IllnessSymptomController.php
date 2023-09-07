@@ -6,43 +6,24 @@ use App\Models\Illness;
 use App\Models\Symptom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class IllnessSymptomController extends Controller
 {
     //
     function findIllnessWithSymptoms(Request $request)
     {
-
         try {
-            $symptoms = $request->input('symptoms'); // Use input() method to get the symptoms
-    
-            // Log symptoms for debugging
-            Log::info('Symptoms: dsdds' . json_encode($symptoms));
-    
-            // Return symptoms in response for debugging
+
+            $possibleIllnesses = Illness::with('symptoms')->whereHas('symptoms', function ($query) use ($request) {
+                $query->whereIn('name', $request->symptoms);
+            })->get();
+
             return response()->json([
-                "symptoms" => $symptoms,
+                "possibleIllnesses" => $possibleIllnesses,
             ], 200);
-    
         } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 500);
+            return $th;
         }
-        // try {
-        //     return response()->json([
-        //         "symptoms" => $request->symptoms,
-        //     ], 200);
-        //     $possibleIllnesses = Illness::with('symptoms')->whereHas('symptoms', function ($query) use ($request) {
-        //         $query->whereIn('name', $request->symptoms);
-        //     })->get();
-    
-        //     return response()->json([
-        //         "possibleIllnesses" => $possibleIllnesses,
-        //     ], 200);
-        // } catch (\Throwable $th) {
-        //     return $th;
-        // }
-       
     }
 
     function getSymptoms()
