@@ -17,22 +17,21 @@ class Illness extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'illness_user','illnessId','userId')->withTimestamps();
+        return $this->belongsToMany(User::class, 'illness_user', 'illnessId', 'userId')->withTimestamps();
     }
 
     public function medications()
     {
-        return $this->belongsToMany(Medication::class, 'illness_medication','illnessId','medicationId')->withoutPivot()->withTimestamps();
+        return $this->belongsToMany(Medication::class, 'illness_medication', 'illnessId', 'medicationId')->withTimestamps();
     }
 
     public function symptoms()
     {
-        return $this->belongsToMany(Symptom::class, 'illness_symptom','illnessId','symptomId')->withTimestamps();
+        return $this->belongsToMany(Symptom::class, 'illness_symptom', 'illnessId', 'symptomId')->withTimestamps();
     }
 
     public function dietaryRecommendations()
     {
-        return $this->hasMany(DietaryRecommendation::class, 'illnessId','id')->withTimestamps();
+        return $this->hasMany(DietaryRecommendation::class, 'illnessId', 'id')->withTimestamps();
     }
-    
 }
