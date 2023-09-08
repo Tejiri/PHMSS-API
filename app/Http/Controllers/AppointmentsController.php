@@ -19,10 +19,10 @@ class AppointmentsController extends Controller
             ]
         );
         $patient = Auth::user();
-        return response()->json([
-            "status" => 200,
-            "request" => $request->all(),
-        ], 200);
+        // return response()->json([
+        //     "status" => 200,
+        //     "request" => $request->all(),
+        // ], 200);
 
 
         $appointment =  Appointment::create([
