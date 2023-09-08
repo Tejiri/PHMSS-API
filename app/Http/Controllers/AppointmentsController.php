@@ -19,6 +19,12 @@ class AppointmentsController extends Controller
             ]
         );
         $patient = Auth::user();
+        return response()->json([
+            "status" => 200,
+            "request" => $request,
+        ], 200);
+
+
         $appointment =  Appointment::create([
             "reason" => $request->reason,
             "startTime" => $request->startTime,
@@ -26,7 +32,7 @@ class AppointmentsController extends Controller
             "date" => $request->date,
             "status" => "pending",
             "patientId" => $patient->id,
-            "doctorId" => $request->doctorId,
+            "doctorId" => $patient->doctorId,
 
         ]);
 
