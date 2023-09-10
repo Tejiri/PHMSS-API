@@ -47,7 +47,9 @@ class ServiceRatingController extends Controller
     function findDoctorRatings($doctorId)
     {
 
-        $serviceRating = ServiceRating::with('doctor')->with('user')->where('doctorId', $doctorId)->get();
+        $serviceRating = ServiceRating::where("patientId",Auth::user()->id)->first();
+
+        // $serviceRating = ServiceRating::with('doctor')->with('user')->where('doctorId', $doctorId)->get();
         return response()->json([
             "status" => 200,
             "ratings" => $serviceRating,
