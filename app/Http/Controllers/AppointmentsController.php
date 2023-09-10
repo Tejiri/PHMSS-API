@@ -16,6 +16,7 @@ class AppointmentsController extends Controller
         $request->validate(
             [
                 "date" =>  'required|date|after:today',
+                "reason" => 'required'
             ]
         );
         $patient = Auth::user();
