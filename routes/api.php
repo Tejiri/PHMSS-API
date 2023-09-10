@@ -75,7 +75,8 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
     Route::post($appVersion . '/patients/check-symptoms', [IllnessSymptomController::class, 'findIllnessWithSymptoms']);
     Route::get($appVersion . '/patients/symptoms', [IllnessSymptomController::class, 'getSymptoms']);
     Route::post($appVersion . '/patients/rate-doctor', [ServiceRatingController::class, 'rateDoctor']);
-    Route::get($appVersion . '/patients/doctor-ratings/{doctorId}', [ServiceRatingController::class, 'findDoctorRatings']);
+    Route::get($appVersion . '/patients/doctor-rating', [ServiceRatingController::class, 'findPatientRating']);
+    Route::get($appVersion . '/patients/delete-doctor-rating', [ServiceRatingController::class, 'deleteRating']);
     Route::post($appVersion . '/patients/send-message', [MessagesController::class, 'sendMessageToDoctor']);
     Route::get($appVersion . '/patients/messages', [MessagesController::class, 'getPatientMessages']);
     Route::post($appVersion . '/patients/create-appointment', [AppointmentsController::class, 'createAppointment']);
