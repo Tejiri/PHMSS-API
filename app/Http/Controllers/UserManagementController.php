@@ -53,7 +53,7 @@ class UserManagementController extends Controller
         $user->address = Crypt::decrypt($user->address);
         $user->postCode = Crypt::decrypt($user->postCode);
         $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
-        $user->gender = Crypt::decrypt( $user->gender);
+        $user->gender = Crypt::decrypt($user->gender);
 
         return response()->json([
             "status" => 200,
@@ -67,26 +67,35 @@ class UserManagementController extends Controller
     {
         $patientId = Auth::user()->id;
         $user = User::find($patientId);
-
+        $request->validate([
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/',      // at least one lowercase letter
+                'regex:/[A-Z]/',      // at least one uppercase letter
+                'regex:/[0-9]/',      // at least one number
+                'regex:/[@$!%*#?&]/', // at least one special character
+            ],
+        ]);
 
         $user->update([
             "password" => $request->password != null ?  Hash::make($request->password) : $user->password,
-             ]);
+        ]);
 
-             $user->firstName = Crypt::decrypt($user->firstName);
-             $user->lastName = Crypt::decrypt($user->lastName);
-             $user->middleName = Crypt::decrypt($user->middleName);
-             $user->address = Crypt::decrypt($user->address);
-             $user->postCode = Crypt::decrypt($user->postCode);
-             $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
-             $user->gender = Crypt::decrypt( $user->gender);
+        $user->firstName = Crypt::decrypt($user->firstName);
+        $user->lastName = Crypt::decrypt($user->lastName);
+        $user->middleName = Crypt::decrypt($user->middleName);
+        $user->address = Crypt::decrypt($user->address);
+        $user->postCode = Crypt::decrypt($user->postCode);
+        $user->phoneNumber = Crypt::decrypt($user->phoneNumber);
+        $user->gender = Crypt::decrypt($user->gender);
 
         return response()->json([
             "status" => 200,
             "message" => "Password has been updated successfully",
             "updatedUser" => $user,
         ], 200);
-
     }
 
     function getBiodata()
