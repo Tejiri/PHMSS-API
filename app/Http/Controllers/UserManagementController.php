@@ -71,7 +71,7 @@ class UserManagementController extends Controller
             'password' => [
                 'required',
                 'string',
-                'min:8',
+                'min:6',
                 'regex:/[a-z]/',      // at least one lowercase letter
                 'regex:/[A-Z]/',      // at least one uppercase letter
                 'regex:/[0-9]/',      // at least one number
