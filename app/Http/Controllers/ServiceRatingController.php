@@ -59,7 +59,7 @@ class ServiceRatingController extends Controller
         $serviceRating = ServiceRating::where("patientId", Auth::user()->id)->first();
         return response()->json([
             "status" => 200,
-            "ratings" => $serviceRating,
+            "rating" => $serviceRating,
         ], 200);
     }
 
