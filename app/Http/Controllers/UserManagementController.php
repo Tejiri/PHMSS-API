@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Illness;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class UserManagementController extends Controller
 {
     //
 
-  
+
 
     function attachIllnessToUser(Request $request, $patientId)
     {
@@ -67,19 +68,26 @@ class UserManagementController extends Controller
 
     function updatePassword(Request $request)
     {
-        $patientId = Auth::user()->id;
-        $user = User::find($patientId);
         $request->validate([
             'password' => [
                 'required',
                 'string',
                 'min:6',
-                'regex:/[a-z]/',      // at least one lowercase letter
-                'regex:/[A-Z]/',      // at least one uppercase letter
-                'regex:/[0-9]/',      // at least one number
-                'regex:/[@$!%*#?&]/', // at least one special character
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
             ],
         ]);
+
+        if (Auth::user()->role == "doctor") {
+            $user  = Doctor::find(Auth::user()->id);
+        } else {
+            $user = User::find(Auth::user()->id);
+        }
+
+
+
 
         $user->update([
             "password" => $request->password != null ?  Hash::make($request->password) : $user->password,

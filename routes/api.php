@@ -47,6 +47,7 @@ use Illuminate\Support\Facades\Hash;
 
 $appVersion = "v1";
 Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
+  Route::put($appVersion . '/update-password', [UserManagementController::class, 'updatePassword']);
 
   Route::middleware(['checkIfAdmin'])->group(function () use ($appVersion) {
     Route::post("v1" . '/admins/register-patient', [UserManagementController::class, 'registerPatient']);
@@ -66,8 +67,6 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
   });
 
   Route::middleware(['checkIfPatient'])->group(function () use ($appVersion) {
-
-    Route::put($appVersion . '/patients/update-password', [UserManagementController::class, 'updatePassword']);
     Route::get($appVersion . '/patients/biodata', [UserManagementController::class, 'getBiodata']);
     Route::get($appVersion . '/patients/illnesses', [IllnessSymptomController::class, 'getPatientIllnesses']);
     Route::get($appVersion . '/patients/medications', [MedicationController::class, 'getMedicationForIllness']);
