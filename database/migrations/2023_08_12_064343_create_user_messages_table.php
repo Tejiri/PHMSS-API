@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('user_messages');
         Schema::create('user_messages', function (Blueprint $table) {
             $table->id();
             $table->boolean('read')->default(0); 

@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('service_ratings');
         Schema::create('service_ratings', function (Blueprint $table) {
             $table->id();
             $table->decimal('rating',5,2);
