@@ -39,7 +39,7 @@ class IllnessSymptomController extends Controller
     {
         return response()->json([
             "status" => 200,
-            "illnesses" => Illness::all(),
+            "illnesses" => Illness::orderBy( 'name','desc' )->get(),
         ], 200);
     }
 
