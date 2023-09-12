@@ -54,20 +54,19 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
   });
 
   Route::middleware(['checkIfDoctor'])->group(function () use ($appVersion) {
-    Route::post($appVersion . '/doctors/create-diet', [DietaryRecommendationController::class, 'createDiet']);
     Route::get($appVersion . '/doctors/completed-appointments', [AppointmentsController::class, 'getDoctorCompletedAppointments']);
     Route::get($appVersion . '/doctors/pending-appointments', [AppointmentsController::class, 'getDoctorPendingAppointments']);
-    Route::get($appVersion  . '/doctors/messages', [MessagesController::class, 'getDoctorMessages']);
-    Route::put($appVersion  . '/doctors/update-appointment', [AppointmentsController::class, 'updateAppointment']);
     Route::get($appVersion  . '/doctors/ratings', [ServiceRatingController::class, 'findDoctorRatings']);
+    Route::put($appVersion  . '/doctors/update-appointment', [AppointmentsController::class, 'updateAppointment']);
     Route::post($appVersion  . '/doctors/create-medication', [MedicationController::class, 'createMedication']);
-    // Route::post($appVersion . '/doctors/attach-medication-to-illness', [MedicationController::class, 'attachMedicationToIllness']);
+    Route::post($appVersion . '/doctors/create-diet', [DietaryRecommendationController::class, 'createDiet']);
+    // Route::get($appVersion  . '/doctors/messages', [MessagesController::class, 'getDoctorMessages']);
     // Route::post($appVersion . '/doctors/attach-illness', [UserManagementController::class, 'attachIllnessToUser']);
     Route::get($appVersion . '/doctors/illnesses', [IllnessSymptomController::class, 'getIllnesses']);
   });
 
   Route::middleware(['checkIfPatient'])->group(function () use ($appVersion) {
-    
+
     Route::put($appVersion . '/patients/update-password', [UserManagementController::class, 'updatePassword']);
     Route::get($appVersion . '/patients/biodata', [UserManagementController::class, 'getBiodata']);
     Route::get($appVersion . '/patients/illnesses', [IllnessSymptomController::class, 'getPatientIllnesses']);

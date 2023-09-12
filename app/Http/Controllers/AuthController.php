@@ -128,6 +128,16 @@ class AuthController extends Controller
             $doctor->phoneNumber = Crypt::decrypt($doctor->phoneNumber);
             $doctor->gender = Crypt::decrypt($doctor->gender);
             $doctor->token = $token;
+
+            foreach ($doctor->patients as $patient) {
+                $patient->firstName = Crypt::decrypt($patient->firstName);
+                $patient->lastName = Crypt::decrypt($patient->lastName);
+                $patient->middleName = Crypt::decrypt($patient->middleName);
+                $patient->address = Crypt::decrypt($patient->address);
+                $patient->postCode = Crypt::decrypt($patient->postCode);
+                $patient->phoneNumber = Crypt::decrypt($patient->phoneNumber);
+                $patient->gender = Crypt::decrypt($patient->gender);
+            }
             return response()->json([
                 "user" => $doctor,
                 'token' => $token,

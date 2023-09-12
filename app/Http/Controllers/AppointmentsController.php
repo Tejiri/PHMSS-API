@@ -105,21 +105,20 @@ class AppointmentsController extends Controller
     function updateAppointment(Request $request)
     {
 
-
         $appointment = Appointment::find($request->appointmentId);
 
-            $appointment->update([
-                "status" => "completed"
-            ]);
+        $appointment->update([
+            "appointmentDetails"=>$request->appointmentDetails,
+            "status" => "completed"
+        ]);
 
-            return  response()->json(
-                [
-                    "status" => 200,
-                    "message" => "Appointment updated successfully",
-                    "updatedAppointment" => $appointment
-                ],
-                200
-            );
-      
+        return  response()->json(
+            [
+                "status" => 200,
+                "message" => "Appointment updated successfully",
+                "updatedAppointment" => $appointment
+            ],
+            200
+        );
     }
 }

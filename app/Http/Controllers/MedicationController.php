@@ -36,15 +36,6 @@ class MedicationController extends Controller
         );
     }
 
-    // function attachMedicationToIllness($medicationId)
-    // {
-    //     $medication  = Medication::find($medicationId);
-
-    //     return $medication;
-
-    // }
-
-
     function getMedicationForIllness(Request $request)
     {
         $illness = Illness::find($request->illnessId);

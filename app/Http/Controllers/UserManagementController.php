@@ -13,6 +13,8 @@ class UserManagementController extends Controller
 {
     //
 
+  
+
     function attachIllnessToUser(Request $request, $patientId)
     {
         $patient = User::with('illnesses')->find($patientId);
