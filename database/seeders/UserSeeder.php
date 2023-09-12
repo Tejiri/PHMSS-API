@@ -98,89 +98,89 @@ class UserSeeder extends Seeder
             $patient1->illnesses()->attach([Arr::random($illnessIds)]);
         }
 
-        $patient2InDatabase = User::where('email', 'patient2@gmail.com')->first();
+        // $patient2InDatabase = User::where('email', 'patient2@gmail.com')->first();
 
-        if (!$patient2InDatabase) {
-            $patient2 = User::create([
-                'username'     => 'exampleUsername',
-                'email'        => 'patient2@gmail.com',
-                'password'     =>  Hash::make('aaaaaa'),
-                'firstName'    => Crypt::encrypt(fake()->firstName()),
-                'lastName'     => Crypt::encrypt(fake()->lastName()),
-                'middleName'   => Crypt::encrypt('Robert'),
-                'dateOfBirth'  => fake()->date(),
-                'address'      => Crypt::encrypt(fake()->address()),
-                'postCode'     => Crypt::encrypt(fake()->postcode()),
-                'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
-                'role'         => 'patient',
-                'gender'       => Crypt::encrypt('male'),
-                'doctorId' => $doctorId
-            ]);
+        // if (!$patient2InDatabase) {
+        //     $patient2 = User::create([
+        //         'username'     => 'exampleUsername',
+        //         'email'        => 'patient2@gmail.com',
+        //         'password'     =>  Hash::make('aaaaaa'),
+        //         'firstName'    => Crypt::encrypt(fake()->firstName()),
+        //         'lastName'     => Crypt::encrypt(fake()->lastName()),
+        //         'middleName'   => Crypt::encrypt('Robert'),
+        //         'dateOfBirth'  => fake()->date(),
+        //         'address'      => Crypt::encrypt(fake()->address()),
+        //         'postCode'     => Crypt::encrypt(fake()->postcode()),
+        //         'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
+        //         'role'         => 'patient',
+        //         'gender'       => Crypt::encrypt('male'),
+        //         'doctorId' => $doctorId
+        //     ]);
 
-            $patient2->illnesses()->attach([Arr::random($illnessIds)]);
-        }
+        //     $patient2->illnesses()->attach([Arr::random($illnessIds)]);
+        // }
 
-        $patient3InDatabase = User::where('email', 'patient3@gmail.com')->first();
+        // $patient3InDatabase = User::where('email', 'patient3@gmail.com')->first();
 
-        if (!$patient3InDatabase) {
-            $patient3 =    User::create([
-                'username'     => 'exampleUsername',
-                'email'        => 'patient3@gmail.com',
-                'password'     => Hash::make('aaaaaa'),
-                'firstName'    => Crypt::encrypt(fake()->firstName()),
-                'lastName'     => Crypt::encrypt(fake()->lastName()),
-                'middleName'   => Crypt::encrypt('Robert'),
-                'dateOfBirth'  => fake()->date(),
-                'address'      => Crypt::encrypt(fake()->address()),
-                'postCode'     => Crypt::encrypt(fake()->postcode()),
-                'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
-                'role'         => 'patient',
-                'gender'       => Crypt::encrypt('male'),
-                'doctorId' => $doctorId
-            ]);
-            $patient3->illnesses()->attach([Arr::random($illnessIds)]);
-        }
+        // if (!$patient3InDatabase) {
+        //     $patient3 =    User::create([
+        //         'username'     => 'exampleUsername',
+        //         'email'        => 'patient3@gmail.com',
+        //         'password'     => Hash::make('aaaaaa'),
+        //         'firstName'    => Crypt::encrypt(fake()->firstName()),
+        //         'lastName'     => Crypt::encrypt(fake()->lastName()),
+        //         'middleName'   => Crypt::encrypt('Robert'),
+        //         'dateOfBirth'  => fake()->date(),
+        //         'address'      => Crypt::encrypt(fake()->address()),
+        //         'postCode'     => Crypt::encrypt(fake()->postcode()),
+        //         'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
+        //         'role'         => 'patient',
+        //         'gender'       => Crypt::encrypt('male'),
+        //         'doctorId' => $doctorId
+        //     ]);
+        //     $patient3->illnesses()->attach([Arr::random($illnessIds)]);
+        // }
 
-        $patient4InDatabase = User::where('email', 'patient4@gmail.com')->first();
+        // $patient4InDatabase = User::where('email', 'patient4@gmail.com')->first();
 
-        if (!$patient4InDatabase) {
-            $patient4 =  User::create([
-                'username'     => 'exampleUsername',
-                'email'        => 'patient4@gmail.com',
-                'password'     =>  Hash::make('aaaaaa'),
-                'firstName'    => Crypt::encrypt(fake()->firstName()),
-                'lastName'     => Crypt::encrypt(fake()->lastName()),
-                'middleName'   => Crypt::encrypt('Robert'),
-                'dateOfBirth'  => fake()->date(),
-                'address'      => Crypt::encrypt(fake()->address()),
-                'postCode'     => Crypt::encrypt(fake()->postcode()),
-                'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
-                'role'         => 'patient',
-                'gender'       => Crypt::encrypt('male'),
-                'doctorId' => $doctorId
-            ]);
-            $patient4->illnesses()->attach([Arr::random($illnessIds)]);
-        }
+        // if (!$patient4InDatabase) {
+        //     $patient4 =  User::create([
+        //         'username'     => 'exampleUsername',
+        //         'email'        => 'patient4@gmail.com',
+        //         'password'     =>  Hash::make('aaaaaa'),
+        //         'firstName'    => Crypt::encrypt(fake()->firstName()),
+        //         'lastName'     => Crypt::encrypt(fake()->lastName()),
+        //         'middleName'   => Crypt::encrypt('Robert'),
+        //         'dateOfBirth'  => fake()->date(),
+        //         'address'      => Crypt::encrypt(fake()->address()),
+        //         'postCode'     => Crypt::encrypt(fake()->postcode()),
+        //         'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
+        //         'role'         => 'patient',
+        //         'gender'       => Crypt::encrypt('male'),
+        //         'doctorId' => $doctorId
+        //     ]);
+        //     $patient4->illnesses()->attach([Arr::random($illnessIds)]);
+        // }
 
-        $patient5InDatabase = User::where('email', 'patient5@gmail.com')->first();
+        // $patient5InDatabase = User::where('email', 'patient5@gmail.com')->first();
 
-        if (!$patient5InDatabase) {
-            $patient5 =  User::create([
-                'username'     => 'exampleUsername',
-                'email'        => 'patient5@gmail.com',
-                'password'     =>  Hash::make('aaaaaa'),
-                'firstName'    => Crypt::encrypt(fake()->firstName()),
-                'lastName'     => Crypt::encrypt(fake()->lastName()),
-                'middleName'   => Crypt::encrypt('Robert'),
-                'dateOfBirth'  => fake()->date(),
-                'address'      => Crypt::encrypt(fake()->address()),
-                'postCode'     => Crypt::encrypt(fake()->postcode()),
-                'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
-                'role'         => 'patient',
-                'gender'       => Crypt::encrypt('male'),
-                'doctorId' => $doctorId
-            ]);
-            $patient5->illnesses()->attach([Arr::random($illnessIds)]);
-        }
+        // if (!$patient5InDatabase) {
+        //     $patient5 =  User::create([
+        //         'username'     => 'exampleUsername',
+        //         'email'        => 'patient5@gmail.com',
+        //         'password'     =>  Hash::make('aaaaaa'),
+        //         'firstName'    => Crypt::encrypt(fake()->firstName()),
+        //         'lastName'     => Crypt::encrypt(fake()->lastName()),
+        //         'middleName'   => Crypt::encrypt('Robert'),
+        //         'dateOfBirth'  => fake()->date(),
+        //         'address'      => Crypt::encrypt(fake()->address()),
+        //         'postCode'     => Crypt::encrypt(fake()->postcode()),
+        //         'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
+        //         'role'         => 'patient',
+        //         'gender'       => Crypt::encrypt('male'),
+        //         'doctorId' => $doctorId
+        //     ]);
+        //     $patient5->illnesses()->attach([Arr::random($illnessIds)]);
+        // }
     }
 }
