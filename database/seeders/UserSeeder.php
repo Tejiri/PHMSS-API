@@ -87,7 +87,7 @@ class UserSeeder extends Seeder
                 'lastName'     => Crypt::encrypt(fake()->lastName()),
                 'middleName'   => Crypt::encrypt('Robert'),
                 'dateOfBirth'  => fake()->date(),
-                'address'      => Crypt::encrypt(fake()->address()),
+                'address'      => Crypt::encrypt("27 Leek Road Houses, Staffordshire University"),
                 'postCode'     => Crypt::encrypt(fake()->postcode()),
                 'phoneNumber'  => Crypt::encrypt(fake()->phoneNumber()),
                 'role'         => 'patient',
