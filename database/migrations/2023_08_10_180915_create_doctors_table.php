@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastName', 255);
             $table->string('middleName', 255)->nullable();
             $table->date('dateOfBirth');
-            $table->string('address', 255)->change();
+            $table->string('address', 255);
             $table->string('postCode', 255);
             $table->string('phoneNumber', 255);
             $table->string('role');
