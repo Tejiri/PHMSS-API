@@ -13,6 +13,14 @@ class MedicationController extends Controller
 
     function createMedication(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required|email|string',
+            'description' => 'required|string|min:10',
+            'dosage' => 'required|string',
+            'frequency' => 'required|string|',
+        ]);
+
         $medication =   Medication::create(
             [
                 "name" => $request->name,

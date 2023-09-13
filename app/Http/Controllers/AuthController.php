@@ -55,34 +55,11 @@ class AuthController extends Controller
         );
     }
 
-    //     public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-
-    //     $credentials = $request->only('email', 'password');
-
-    //     $user = User::where('email', $credentials['email'])->first();
-    //     $doctor = Doctor::where('email', $credentials['email'])->first();
-
-    //     if ($user && Hash::check($credentials['password'], $user->password)) {
-    //         $token = $user->createToken('app-token')->plainTextToken;
-    //         return response()->json(['user' => $user, 'token' => $token], 200);
-    //     } elseif ($doctor && Hash::check($credentials['password'], $doctor->password)) {
-    //         $token = $doctor->createToken('app-token')->plainTextToken;
-    //         return response()->json(['doctor' => $doctor, 'token' => $token], 200);
-    //     }
-
-    //     return response()->json(['message' => 'Invalid credentials'], 401);
-    // }
-
     function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => 'required|email|string',
+            'password' => 'required|string',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -148,42 +125,4 @@ class AuthController extends Controller
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
-    // function login(Request $request)
-    // {
-
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-
-    //     $credentials = $request->only('email', 'password');
-
-    //     if (Auth::attempt($credentials)) {
-
-    //         $user = User::where('email', $request->email)->first();
-
-    //         if ($user) {
-    //             $token =   $user->createToken('phmss-Token')->plainTextToken;
-    //             $response = [
-    //                 "user" => $user,
-    //                 'token' => $token,
-    //                 "message" => "Login successful"
-    //             ];
-    //             return response()->json($response, 200);
-    //         } else {
-    //             $doctor = Doctor::where('email', $request->email)->first();
-    //             if ($doctor) {
-    //                 $token =   $doctor->createToken('phmss-Token')->plainTextToken;
-    //                 $response = [
-    //                     "user" => $doctor,
-    //                     'token' => $token,
-    //                     "message" => "Login successful"
-    //                 ];
-    //                 return response()->json($response, 200);
-    //             }
-    //         }
-    //     } else {
-    //         return response()->json(['message' => 'Invalid credentials'], 401);
-    //     }
-    // }
 }

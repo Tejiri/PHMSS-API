@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('medications', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description', 255);
             $table->string('dosage');
             $table->string('frequency');
             $table->string('imageUrl')->nullable();

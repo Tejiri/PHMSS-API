@@ -84,7 +84,6 @@ class ServiceRatingController extends Controller
 
     function deleteRating()
     {
-        // $serviceRating = 
         ServiceRating::where("patientId", Auth::user()->id)->first()->delete();
         $checkRating = ServiceRating::where("patientId", Auth::user()->id)->first();
         return response()->json([

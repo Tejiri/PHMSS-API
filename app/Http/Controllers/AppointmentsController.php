@@ -16,15 +16,10 @@ class AppointmentsController extends Controller
         $request->validate(
             [
                 "date" =>  'required|date|after:today',
-                "reason" => 'required|min:6'
+                "reason" => 'required|string|min:6'
             ]
         );
         $patient = Auth::user();
-        // return response()->json([
-        //     "status" => 200,
-        //     "request" => $request->all(),
-        // ], 200);
-
 
         $appointment =  Appointment::create([
             "reason" => $request->reason,
@@ -105,10 +100,16 @@ class AppointmentsController extends Controller
     function updateAppointment(Request $request)
     {
 
+        $request->validate(
+            [
+                "appointmentDetails" =>  'required|string|min:6',
+            ]
+        );
+
         $appointment = Appointment::find($request->appointmentId);
 
         $appointment->update([
-            "appointmentDetails"=>$request->appointmentDetails,
+            "appointmentDetails" => $request->appointmentDetails,
             "status" => "completed"
         ]);
 
