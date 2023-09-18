@@ -13,25 +13,28 @@ class Doctor extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['email',  'password'];
+    protected $fillable = ['email',  'password', 'username', 'firstName', 'lastName', 'middleName', 'dateOfBirth', 'address', 'postCode', 'phoneNumber', 'role', 'gender'];
 
     protected $hidden = ['password',  'remember_token'];
 
+
     function patients(): HasMany
     {
-        return $this->hasMany(User::class,'doctorId','id');
+        return $this->hasMany(User::class, 'doctorId', 'id');
     }
 
     function serviceRatings(): HasMany
     {
-        return $this->hasMany(ServiceRating::class,'doctorId','id');
+        return $this->hasMany(ServiceRating::class, 'doctorId', 'id');
     }
 
-    function messages():HasMany{
-        return $this->hasMany(UserMessages::class,'doctorId','id');
+    function messages(): HasMany
+    {
+        return $this->hasMany(UserMessages::class, 'doctorId', 'id');
     }
 
-    function appointments():HasMany{
-        return $this->hasMany(Appointment::class,'doctorId','id');
+    function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class, 'doctorId', 'id');
     }
 }

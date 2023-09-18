@@ -21,6 +21,19 @@ class AppointmentsController extends Controller
         );
         $patient = Auth::user();
 
+        $existingAppointments = Appointment::where('date', $request->date)
+            ->where('startTime', $request->startTime)
+            ->where('endTime', $request->endTime)
+            ->where('doctorId', $patient->doctorId)
+            ->count();
+
+        if ($existingAppointments > 0) {
+            return response()->json([
+                "status" => 409,
+                "message" => "An appointment already exists at the specified date and time."
+            ], 409);
+        }
+
         $appointment =  Appointment::create([
             "reason" => $request->reason,
             "startTime" => $request->startTime,
@@ -34,7 +47,7 @@ class AppointmentsController extends Controller
 
         return response()->json([
             "status" => 200,
-            "message" => "Appointment sheduled successfully",
+            "message" => "Appointment scheduled successfully",
             "appointment" => Appointment::with('doctor')->with('patient')->find($appointment->id),
         ], 200);
     }

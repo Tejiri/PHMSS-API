@@ -61,8 +61,8 @@ Route::middleware(['auth:sanctum'])->group(function () use ($appVersion) {
     Route::put($appVersion  . '/doctors/update-appointment', [AppointmentsController::class, 'updateAppointment']);
     Route::post($appVersion  . '/doctors/create-medication', [MedicationController::class, 'createMedication']);
     Route::post($appVersion . '/doctors/create-diet', [DietaryRecommendationController::class, 'createDiet']);
-    // Route::get($appVersion  . '/doctors/messages', [MessagesController::class, 'getDoctorMessages']);
-    // Route::post($appVersion . '/doctors/attach-illness', [UserManagementController::class, 'attachIllnessToUser']);
+    Route::get($appVersion  . '/doctors/messages', [MessagesController::class, 'getDoctorMessages']);
+    Route::post($appVersion . '/doctors/attach-illness', [UserManagementController::class, 'attachIllnessToUser']);
     Route::get($appVersion . '/doctors/illnesses', [IllnessSymptomController::class, 'getIllnesses']);
   });
 

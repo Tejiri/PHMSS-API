@@ -15,7 +15,7 @@ class MedicationController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|email|string',
+            'name' => 'required|string',
             'description' => 'required|string|min:10',
             'dosage' => 'required|string',
             'frequency' => 'required|string|',

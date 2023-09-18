@@ -20,6 +20,7 @@ class IllnessSymptomController extends Controller
             })->get();
 
             return response()->json([
+                "status"=>200,
                 "possibleIllnesses" => $possibleIllnesses,
             ], 200);
         } catch (\Throwable $th) {
@@ -47,6 +48,7 @@ class IllnessSymptomController extends Controller
     {
         $patient = Auth::user();
         return response()->json([
+            "status" => 200,
             "illnesses" => $patient->illnesses,
         ], 200);
     }
